@@ -1,110 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin = "anonymous">
-    <link rel = "stylesheet" type = "text/css" href = "assets/style/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
-    
-    <title>This is a quiz in JavaScript by Harper</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/style/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+
+	<title>This is a quiz in JavaScript by Harper</title>
 </head>
+
 <body>
-	<div class = "timer">Time Left: <span id = "timerCount">60</span> s
+	<div class="timer">Time Left: <span id="timerCount">60</span> s
 	</div>
-    <div class="container">	
-		<div class="row">  
+	<div class="container">
+		<div class="row">
 			<div class="col marginTop">
 				<div class="card text-center">
 					<div class="card-header">
 						<ul class="nav nav-tabs card-header-tabs">
 							<li class="nav-item">
-								<a class="nav-link active" href="index.html" id = "startYourQuiz">Start Your Quiz</a>
+								<a class="nav-link active" href="index.html" id="startYourQuiz">Start Your Quiz</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="score.html" id = "viewHighScores">View High Scores</a>
+								<a class="nav-link" href="score.html" id="viewHighScores">View High Scores</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="contact.html" id = "contactMe">Contact Me</a>
+								<a class="nav-link" href="contact.html" id="contactMe">Contact Me</a>
 							</li>
 						</ul>
 					</div>
-					<div class="card-body" id = "initial">
+					<div class="card-body" id="initial">
 						<h5 class="card-title">Coding Quiz Challenge</h5>
 						<p class="card-text">
 							Try to understand the following code-related questions within the time limit.
 							<br>
 							Keep in mind that incorrect answers will penalize your time by ten seconds!
 						</p>
-						<select class="form-control form-control-sm" id = "quizSetSelect">
-						  <option id = "quizSet1">Quiz set 1</option>
-						  <option id = "quizSet2">Quiz set 2</option>
-						  <option id = "quizSet3">Quiz set 3</option>
-						  <option id = "quizSet4">Quiz set 4</option>						  
+						<select class="form-control form-control-sm" id="quizSetSelect">
+							<option id="quizSet1">Quiz set 1</option>
+							<option id="quizSet2">Quiz set 2</option>
+							<option id="quizSet3">Quiz set 3</option>
+							<option id="quizSet4">Quiz set 4</option>
 						</select>
-						<button href="#" class="btn btn-primary" id = "startQuiz">Start Quiz</button>
+						<button href="#" class="btn btn-primary" id="startQuiz">Start Quiz</button>
 					</div>
-					
-					<div class="card-body" id = "quizTest">
+
+					<div class="card-body" id="quizTest">
 						<h5 class="card-title">Coding Quiz Challenge</h5>
-						<p class="card-text" id = "questionDisp">
+						<p class="card-text" id="questionDisp">
 							Choose the answers!
 						</p>
 						<div class="input-group mb-3">
-						  <div class="input-group-prepend">
-							<div class="input-group-text">
-							  <input type="checkbox" aria-label="Checkbox for following text input">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" aria-label="Checkbox for following text input">
+								</div>
 							</div>
-						  </div>
-						  <span class = "form-control">A.<span id = "selection1">Selection Content</span></span>
+							<span class="form-control">A.<span id="selection1">Selection Content</span></span>
 						</div>
-						
+
 						<div class="input-group mb-3">
-						  <div class="input-group-prepend">
-							<div class="input-group-text">
-							  <input type="checkbox" aria-label="Checkbox for following text input">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" aria-label="Checkbox for following text input">
+								</div>
 							</div>
-						  </div>
-						  <span class = "form-control">B.<span id = "selection2">Selection Content</span></span>
+							<span class="form-control">B.<span id="selection2">Selection Content</span></span>
 						</div>
-						
+
 						<div class="input-group mb-3">
-						  <div class="input-group-prepend">
-							<div class="input-group-text">
-							  <input type="checkbox" aria-label="Checkbox for following text input">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" aria-label="Checkbox for following text input">
+								</div>
 							</div>
-						  </div>
-						  <span class = "form-control">C.<span id = "selection3">Selection Content</span></span>
+							<span class="form-control">C.<span id="selection3">Selection Content</span></span>
 						</div>
-						
+
 						<div class="input-group mb-3">
-						  <div class="input-group-prepend">
-							<div class="input-group-text">
-							  <input type="checkbox" aria-label="Checkbox for following text input">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="checkbox" aria-label="Checkbox for following text input">
+								</div>
 							</div>
-						  </div>
-						  <span class = "form-control">D.<span id = "selection4">Selection Content</span></span>
+							<span class="form-control">D.<span id="selection4">Selection Content</span></span>
 						</div>
-						
-						<button href="#" class="btn btn-primary" id = "nextQuestion">Next</button>
+
+						<button href="#" class="btn btn-primary" id="nextQuestion">Next</button>
 					</div>
-					
-					<div class="card-body" id = "scoreDisplay">
+
+					<div class="card-body" id="scoreDisplay">
 						<h5 class="card-title">Your Score is:</h5>
 						<p class="card-text">
 						</p>
-						<button href="index.html" class="btn btn-primary" id = "startQuiz">Start Quiz</button>
+						<button href="index.html" class="btn btn-primary" id="startQuiz">Start Quiz</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="quizset.js"></script>
 
 </body>
+
 </html>
