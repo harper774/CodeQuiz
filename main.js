@@ -229,7 +229,7 @@ var countTimer = 60;
 btnStartQuiz.addEventListener("click", quizPage);
 //
 btnNextQuestion.addEventListener("click",function(e){
-	if(countTimer>0){
+	if(countTimer>0 && questionCount<9){
 		nextQuestion();
 		initNext();
 	}
@@ -246,7 +246,7 @@ btnReStartQuiz.addEventListener("click",function(e){
 })
 
 quizTestPage.addEventListener("click",function(e){
-	if(countTimer>0){
+	if(countTimer>0 && questionCount<9){
 		if(e.target.id === "boxCheckedBox1" || e.target.id === "boxCheckedBox2" || e.target.id === "boxCheckedBox3" || e.target.id === "boxCheckedBox4" ){
 		var boxClicked = e.target.id;
 		checkBoxOne(e);
