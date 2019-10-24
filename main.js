@@ -185,10 +185,12 @@ function checkScore(boxId){
 	var answer = answerSet1[seq[questionCount]];//retrieving the anwer
 	console.log(answer);
 	if(t === answer){
+		// setTimeout("msgDis.innerHTML = 'Congratulations you are right!'",2000);
 		msgDis.innerHTML = "Congratulations you are right!"
 		userScore++;//increase the user score
 	}
 	else{
+		// setTimeout("msgDis.innerHTML = 'Sorry your are wrong!'",2000);
 		msgDis.innerHTML = "Sorry your are wrong!"
 		countTimer = countTimer-10;//timer penalty
 	}
@@ -257,31 +259,37 @@ btnNextQuestion.addEventListener("click",function(e){
 	else{
 		userScoreDis.innerHTML = userScore;
 		ScorePage();
+		timerDisplay(0);
 	}
 });
 
 btnReStartQuiz.addEventListener("click",function(e){
-	countTimer = 60;
-	initPage();
-	window.clearInterval();
+	window.location.reload();//use reload to initialize the page
 })
 
 quizTestPage.addEventListener("click",function(e){
+	
 	if(countTimer>0 && questionCount<9){
 		if(checkFourBox(e)){
 		var boxClicked = e.target.id;
-		checkBoxOne(e);
+		checkBoxOne(e);		
+		setTimeout("nextQuestion()",1000);	
+		setTimeout("initNext()",1000);	
 		checkScore(boxClicked);
+		
 		}
 	}
 	else{
 		userScoreDis.innerHTML = userScore;
 		ScorePage();
+		timerDisplay(0);
 	}
+	
 });
 
 while(countTimer < 0){
 	ScorePage();
+	timerDisplay(0);
 }
 
 
