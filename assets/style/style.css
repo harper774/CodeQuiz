@@ -1,0 +1,55 @@
+html{
+	height:100%;
+}
+
+body{
+    margin:0px;
+    padding:0px;
+    /* background-color: rgb(240, 239, 239); */
+    width:100%;
+    font-family: 'Ubuntu', sans-serif;
+    background-image: url(../pic/leather.png);
+	height:100%;
+}
+
+.marginTop{
+	margin-top:15%;
+}
+
+.timer{
+	position:fixed;
+	top:2%;
+	right:5%;
+	
+	border:1px dashed black;
+	padding:4px;
+	border-radius:7%;
+	
+	background:white;
+	color:pink;
+}
+
+.card{
+	height:max-content;
+}
+
+#startQuiz{
+	background-color:pink;
+	border:1px solid pink;
+	color:gray;
+}
+
+.nav-link{
+	color:black;
+}
+
+.form-control-sm{
+	width:60%;
+	margin:0 auto 10px auto;;
+}
+
+@media screen and (max-width:640px){
+	.nav-item{
+		width:100%;
+	}
+}
