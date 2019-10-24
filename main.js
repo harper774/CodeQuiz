@@ -2,6 +2,9 @@
 
 
 //Get the dom objects
+
+const timerCount = document.querySelector("#timerCount");
+
 const ifQuizSet1 = document.querySelector("#quizSet1");
 const ifQuizSet2 = document.querySelector("#quizSet2");
 const ifQuizSet3 = document.querySelector("#quizSet3");
@@ -19,16 +22,18 @@ const initialPage = document.querySelector("#initial");
 const quizTestPage = document.querySelector("#quizTest");
 const scoreDisplayPage = document.querySelector("#scoreDisplay");
 
-
-const timerCount = document.querySelector("#timerCount");
-
 const questionDisp = document.querySelector("#questionDisp");
 const select1 = document.querySelector("#selection1");
 const select2 = document.querySelector("#selection2");
 const select3 = document.querySelector("#selection3");
 const select4 = document.querySelector("#selection4");
 
+const selectBox1 = document.querySelector("#boxCheckedBox1");
+const selectBox2 = document.querySelector("#boxCheckedBox2");
+const selectBox3 = document.querySelector("#boxCheckedBox3");
+const selectBox4 = document.querySelector("#boxCheckedBox4");
 
+const msgDis = document.querySelector("#msgDis");
 
 //init
 function initPage(e){
@@ -47,7 +52,7 @@ function quizPage(e){
 }
 
 //
-function ScoreDisplay(e){
+function ScorePage(e){
 	initialPage.style.display = "none";
 	quizTestPage.style.display = "none";
 	scoreDisplayPage.style.display = "block";	
@@ -108,24 +113,129 @@ function questionSelect(number){
 	}
 }
 
+//this is to make sure that only one box could be ticked
+//at one time
+//check if the id of last event equals to this one
+//if not, then this one = true, last one = false
+//if the same, then this one = false
+//record everytime's event target's id
+function checkBoxOne(e){
+	if(count){
+		tempCheck = e.target.id;;
+		count = 0;
+	}
+	else{
+		if(e.target.id !== tempCheck){
+			document.getElementById(tempCheck).checked = false;
+			e.target.checked = true;
+			tempCheck = e.target.id;
+		}
+		else{
+			document.getElementById(tempCheck).checked = false;
+			tempCheck = e.target.id;
+		}
+	}
+}
+
+function nextQuestion(){
+	if(questionCount<9){
+		questionCount++;
+		questionDisplay(seq[questionCount]);
+	}
+	else{
+		ScorePage();
+	}
+}
+
+function initNext(){
+	msgDis.innerHTML = "";
+	selectBox1.checked = false;
+	selectBox2.checked = false;
+	selectBox3.checked = false;
+	selectBox4.checked = false;
+	tempCheck = "";
+	count = 1;
+}
+
+function checkABCD(boxId){
+	var k;
+
+	console.log(boxId);
+	switch (boxId){
+		case "boxcheckedbox1":
+			k = "a";
+			break;
+		case "boxcheckedbox2":
+			k = "b";
+			break;
+		case "boxcheckedbox3":
+			k = "c";
+			break;
+		case "boxcheckedbox4":
+			k = "d";
+			break;
+	}
+	return k;
+}
+
+function checkScore(boxId){
+	boxId = boxId.toLowerCase();
+	var t = checkABCD(boxId);
+	console.log(t);
+	var answer = answerSet1[seq[questionCount]];//retrieving the anwer
+	console.log(answer);
+	if(t === answer){
+		msgDis.innerHTML = "Congratulations you are right!"
+	}
+	else{
+		msgDis.innerHTML = "Sorry your are wrong!"
+	}
+}
+
+//try to expand the click area to span but failed
+
+// function checkChecked(event){
+// 	let eventT = event.target;
+// 	console.log(eventT.tagName);
+// 	console.log(eventT.classList);
+// 	if(eventT.classList.contains("boxChecked")){
+// 		switch(eventT.tagName.toLowerCase()){
+// 			case "INPUT":
+// 				console.log('hello');
+// 				eventT.checked = true;
+// 				break;
+// 			case "SPAN":
+// 				if(eventT.classList.contains("form-control")){
+// 					eventT.siblings.elementChildren.elementChildren.checked = true;
+// 				}
+// 				else{
+// 					eventT.parent.siblings.elementChildren.elementChildren.checked = true;
+// 				}
+// 		}
+// 	}
+// }
+
 //main process
 initPage();
-var seq = random();
-var questionCount = 0;
+var seq = random();//for randoming the question
+var questionCount = 0;//for locating the question
+var count = 1;//for that only one box could be checked
+var tempCheck;
 //press the button to begin the test
 btnStartQuiz.addEventListener("click", quizPage);
 //
 btnNextQuestion.addEventListener("click",function(e){
-	if(questionCount<9){
-	questionCount++;
-	questionDisplay(seq[questionCount]);
-	}
-	else{
-		ScoreDisplay();
-	}
+	nextQuestion();
+	initNext();
 });
 
-
+quizTestPage.addEventListener("click",function(e){
+	if(e.target.id === "boxCheckedBox1" || e.target.id === "boxCheckedBox2" || e.target.id === "boxCheckedBox3" || e.target.id === "boxCheckedBox4" ){
+	var boxClicked = e.target.id;
+	checkBoxOne(e);
+	checkScore(boxClicked);
+	}
+});
 
 
 
