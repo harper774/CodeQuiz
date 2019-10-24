@@ -53,6 +53,7 @@ function quizPage(e){
 
 //
 function ScorePage(e){
+	countTimer = 0;
 	initialPage.style.display = "none";
 	quizTestPage.style.display = "none";
 	scoreDisplayPage.style.display = "block";	
@@ -194,6 +195,26 @@ function checkScore(boxId){
 	// return userScore;
 }
 
+function checkFourBox(e){
+	var check;
+	if(e.target.id === "boxCheckedBox1"){
+		check = true;
+	}
+	else if(e.target.id === "boxCheckedBox2"){
+		check = true;
+	}
+	else if(e.target.id === "boxCheckedBox3"){
+		check = true;
+	}
+	else if(e.target.id === "boxCheckedBox4"){
+		check = true;
+	}
+	else{
+		check = false;
+	}
+	return check;
+}
+
 //try to expand the click area to span but failed
 
 // function checkChecked(event){
@@ -247,7 +268,7 @@ btnReStartQuiz.addEventListener("click",function(e){
 
 quizTestPage.addEventListener("click",function(e){
 	if(countTimer>0 && questionCount<9){
-		if(e.target.id === "boxCheckedBox1" || e.target.id === "boxCheckedBox2" || e.target.id === "boxCheckedBox3" || e.target.id === "boxCheckedBox4" ){
+		if(checkFourBox(e)){
 		var boxClicked = e.target.id;
 		checkBoxOne(e);
 		checkScore(boxClicked);
@@ -259,7 +280,9 @@ quizTestPage.addEventListener("click",function(e){
 	}
 });
 
-
+while(countTimer < 0){
+	ScorePage();
+}
 
 
 
