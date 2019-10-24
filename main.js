@@ -1,5 +1,3 @@
-//
-
 
 //Get the dom objects
 
@@ -17,6 +15,7 @@ const ifContactMe = document.querySelector("#contactMe");
 
 const btnStartQuiz = document.querySelector("#startQuiz");
 const btnNextQuestion = document.querySelector("#nextQuestion");
+const btnReStartQuiz = document.querySelector("#reStartQuiz");
 
 const initialPage = document.querySelector("#initial");
 const quizTestPage = document.querySelector("#quizTest");
@@ -34,6 +33,7 @@ const selectBox3 = document.querySelector("#boxCheckedBox3");
 const selectBox4 = document.querySelector("#boxCheckedBox4");
 
 const msgDis = document.querySelector("#msgDis");
+const userScoreDis = document.querySelector("#userScore");
 
 //init
 function initPage(e){
@@ -58,13 +58,12 @@ function ScorePage(e){
 	scoreDisplayPage.style.display = "block";	
 }
 
-//fot timer to decrease with time
+//fot timer to decrease with time//why timer could not be terminated?
 function timer(){
-	var count = 60;
 	setInterval(function(e){
-		count--;
-		if(count>=0){
-			timerDisplay(count);
+		countTimer--;
+		if(countTimer>=0){
+			timerDisplay(countTimer);
 		}
 	},1000);
 }
@@ -186,10 +185,13 @@ function checkScore(boxId){
 	console.log(answer);
 	if(t === answer){
 		msgDis.innerHTML = "Congratulations you are right!"
+		userScore++;//increase the user score
 	}
 	else{
 		msgDis.innerHTML = "Sorry your are wrong!"
+		countTimer = countTimer-10;//timer penalty
 	}
+	// return userScore;
 }
 
 //try to expand the click area to span but failed
@@ -221,21 +223,43 @@ var seq = random();//for randoming the question
 var questionCount = 0;//for locating the question
 var count = 1;//for that only one box could be checked
 var tempCheck;
+var userScore = 0;
+var countTimer = 60;
 //press the button to begin the test
 btnStartQuiz.addEventListener("click", quizPage);
 //
 btnNextQuestion.addEventListener("click",function(e){
-	nextQuestion();
-	initNext();
-});
-
-quizTestPage.addEventListener("click",function(e){
-	if(e.target.id === "boxCheckedBox1" || e.target.id === "boxCheckedBox2" || e.target.id === "boxCheckedBox3" || e.target.id === "boxCheckedBox4" ){
-	var boxClicked = e.target.id;
-	checkBoxOne(e);
-	checkScore(boxClicked);
+	if(countTimer>0){
+		nextQuestion();
+		initNext();
+	}
+	else{
+		userScoreDis.innerHTML = userScore;
+		ScorePage();
 	}
 });
+
+btnReStartQuiz.addEventListener("click",function(e){
+	countTimer = 60;
+	initPage();
+	window.clearInterval();
+})
+
+quizTestPage.addEventListener("click",function(e){
+	if(countTimer>0){
+		if(e.target.id === "boxCheckedBox1" || e.target.id === "boxCheckedBox2" || e.target.id === "boxCheckedBox3" || e.target.id === "boxCheckedBox4" ){
+		var boxClicked = e.target.id;
+		checkBoxOne(e);
+		checkScore(boxClicked);
+		}
+	}
+	else{
+		userScoreDis.innerHTML = userScore;
+		ScorePage();
+	}
+});
+
+
 
 
 
