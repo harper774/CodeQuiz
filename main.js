@@ -21,6 +21,8 @@ const initialPage = document.querySelector("#initial");
 const quizTestPage = document.querySelector("#quizTest");
 const scoreDisplayPage = document.querySelector("#scoreDisplay");
 
+
+const quesExtraDisp = document.querySelector("#quesExtraDisp");
 const questionDisp = document.querySelector("#questionDisp");
 const select1 = document.querySelector("#selection1");
 const select2 = document.querySelector("#selection2");
@@ -48,7 +50,9 @@ function quizPage(e){
 	quizTestPage.style.display = "block";
 	scoreDisplayPage.style.display = "none";
 	timer();//start the timer
-	questionDisplay(seq[questionCount]);
+	nextQuestion();
+	extraQuestionDisplay();
+	initNext();
 }
 
 //
@@ -97,12 +101,12 @@ function random() {
 }
 
 function questionSelect(number){
-	var question = questionSet1[number];
+	var question = quizSelect().question(number);
 	var selection = [
-						selectionSet1[(number*4)],
-						selectionSet1[(number*4+1)],
-						selectionSet1[(number*4+2)],
-						selectionSet1[(number*4+3)]
+		quizSelect().selection((number*4)),
+		quizSelect().selection((number*4+1)),
+		quizSelect().selection((number*4+2)),
+		quizSelect().selection((number*4+3))
 					];
 	return{
 		question:question,
@@ -138,13 +142,15 @@ function checkBoxOne(e){
 }
 
 function nextQuestion(){
-	if(questionCount<9){
-		questionCount++;
+	quesExtraDisp.textContent = "";
+	if(questionCount<9){		
 		questionDisplay(seq[questionCount]);
+		extraQuestionDisplay();
 	}
 	else{
 		ScorePage();
 	}
+	questionCount++;
 }
 
 function initNext(){
@@ -181,20 +187,24 @@ function checkABCD(boxId){
 function checkScore(boxId){
 	boxId = boxId.toLowerCase();
 	var t = checkABCD(boxId);
+	var flag = 0;
 	console.log(t);
-	var answer = answerSet1[seq[questionCount]];//retrieving the anwer
+	var answer = quizSelect().answer(seq[questionCount]);//retrieving the anwer
 	console.log(answer);
 	if(t === answer){
 		// setTimeout("msgDis.innerHTML = 'Congratulations you are right!'",2000);
 		msgDis.innerHTML = "Congratulations you are right!"
 		userScore++;//increase the user score
+		flag = 1;
 	}
 	else{
 		// setTimeout("msgDis.innerHTML = 'Sorry your are wrong!'",2000);
 		msgDis.innerHTML = "Sorry your are wrong!"
 		countTimer = countTimer-10;//timer penalty
+		flag = 0;
 	}
 	// return userScore;
+	return flag;
 }
 
 function checkFourBox(e){
@@ -215,6 +225,55 @@ function checkFourBox(e){
 		check = false;
 	}
 	return check;
+}
+
+function quizSelect(){
+	var t = quizSetSelect.value.toLowerCase();
+	var select;
+	switch(t){
+		case "quiz set 1":
+		select = quizSet1;//choose the object
+		break;
+		case "quiz set 2":
+		select = quizSet2;
+		break;
+		case "quiz set 3":
+		select = quizSet3;
+		break;
+		case "quiz set 4":
+		select = quizSet4;
+		break;
+	}
+	return select;
+}
+
+function extraQuestionDisplay(){
+	var quizset = quizSetSelect.value.toLowerCase();
+	console.log(quizset);
+	switch(quizset){
+		case "quiz set 1":
+		if(seq[questionCount] === '1'){
+			quesExtraDisp.textContent = quizSelect().special(0);
+			console.log(quizSelect().special(0));
+		}
+		else if(seq[questionCount] === '5'){
+			quesExtraDisp.textContent = quizSelect().special(1);
+			console.log(quizSelect().special(1));
+		}
+		else if(seq[questionCount] === '6'){
+			quesExtraDisp.textContent = quizSelect().special(2);
+			console.log(quizSelect().special(2));
+		}
+		else if(seq[questionCount] === '8'){
+			quesExtraDisp.textContent = quizSelect().special(3);
+			console.log(quizSelect().special(3));
+		}
+		else if(seq[questionCount] === '9'){
+			quesExtraDisp.textContent = quizSelect().special(4);
+			console.log(quizSelect().special(4));
+		}
+		break;
+	}
 }
 
 //try to expand the click area to span but failed
@@ -250,10 +309,12 @@ var userScore = 0;
 var countTimer = 60;
 //press the button to begin the test
 btnStartQuiz.addEventListener("click", quizPage);
-//
+
+//next button
 btnNextQuestion.addEventListener("click",function(e){
 	if(countTimer>0 && questionCount<9){
 		nextQuestion();
+		extraQuestionDisplay();
 		initNext();
 	}
 	else{
@@ -263,34 +324,45 @@ btnNextQuestion.addEventListener("click",function(e){
 	}
 });
 
+//restart quiz button
 btnReStartQuiz.addEventListener("click",function(e){
 	window.location.reload();//use reload to initialize the page
 })
 
-quizTestPage.addEventListener("click",function(e){
-	
+//answering the question
+quizTestPage.addEventListener("click",function(e){	
+	var boxClicked = e.target.id;
 	if(countTimer>0 && questionCount<9){
-		if(checkFourBox(e)){
-		var boxClicked = e.target.id;
+		if(checkFourBox(e) && countTimer >10){
 		checkBoxOne(e);		
 		setTimeout("nextQuestion()",1000);	
 		setTimeout("initNext()",1000);	
-		checkScore(boxClicked);
-		
+		checkScore(boxClicked);		
+		}
+		else if (checkFourBox(e) && countTimer <= 10){
+			var flag = checkScore(boxClicked);
+			if(flag){
+				checkBoxOne(e);		
+				setTimeout("nextQuestion()",1000);	
+				setTimeout("initNext()",1000);	
+				checkScore(boxClicked);	
+			}
+			else{
+				checkBoxOne(e);	
+				checkScore(boxClicked);
+				userScoreDis.innerHTML = userScore;
+				ScorePage();
+				timerDisplay(0);
+			}
 		}
 	}
 	else{
 		userScoreDis.innerHTML = userScore;
 		ScorePage();
 		timerDisplay(0);
-	}
-	
+	}	
 });
 
-while(countTimer < 0){
-	ScorePage();
-	timerDisplay(0);
-}
 
 
 
