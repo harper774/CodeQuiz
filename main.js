@@ -1,6 +1,4 @@
-
 //Get the dom objects
-
 const timerCount = document.querySelector("#timerCount");
 
 const ifQuizSet1 = document.querySelector("#quizSet1");
@@ -51,7 +49,6 @@ function quizPage(e){
 	scoreDisplayPage.style.display = "none";
 	timer();//start the timer
 	nextQuestion();
-	extraQuestionDisplay();
 	initNext();
 }
 
@@ -185,11 +182,12 @@ function checkABCD(boxId){
 }
 
 function checkScore(boxId){
+	
 	boxId = boxId.toLowerCase();
 	var t = checkABCD(boxId);
 	var flag = 0;
 	console.log(t);
-	var answer = quizSelect().answer(seq[questionCount]);//retrieving the anwer
+	var answer = quizSelect().answer(seq[questionCount-1]);//retrieving the anwer
 	console.log(answer);
 	if(t === answer){
 		// setTimeout("msgDis.innerHTML = 'Congratulations you are right!'",2000);
@@ -306,7 +304,7 @@ var questionCount = 0;//for locating the question
 var count = 1;//for that only one box could be checked
 var tempCheck;
 var userScore = 0;
-var countTimer = 60;
+var countTimer = 150;
 //press the button to begin the test
 btnStartQuiz.addEventListener("click", quizPage);
 

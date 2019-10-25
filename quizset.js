@@ -76,16 +76,16 @@ var quizSet4 = {
 
 //for quiz set 1
 var questionSet1 = [
-						'What is the HTML tag under which one can write the JavaScript code?',
-						'Choose the correct JavaScript syntax to change the content of the following HTML code.',
-						'Which of the following is the correct syntax to display “GeeksforGeeks” in an alert box using JavaScript?',
-						'What is the correct syntax for referring to an external script called “geek.js”?',
-						'The external JavaScript file must contain <script> tag. True or False?',
-						'Predict the output of the following JavaScript code.',
-						'Predict the output of the following JavaScript code.',
-						'Which of the following is not a reserved word in JavaScript?',
-						'Predict the output of the following JavaScript code.',
-						'Predict the output of the following JavaScript code.'
+					'What is the HTML tag under which one can write the JavaScript code?',
+					'Choose the correct JavaScript syntax to change the content of the following HTML code.',
+					'Which of the following is the correct syntax to display “GeeksforGeeks” in an alert box using JavaScript?',
+					'What is the correct syntax for referring to an external script called “geek.js”?',
+					'The external JavaScript file must contain <script> tag. True or False?',
+					'Predict the output of the following JavaScript code.',
+					'Predict the output of the following JavaScript code.',
+					'Which of the following is not a reserved word in JavaScript?',
+					'Predict the output of the following JavaScript code.',
+					'Predict the output of the following JavaScript code.'
 ];
 
 var selectionSet1 = [
@@ -112,6 +112,14 @@ var answerSet1 = [
 					'c',
 					'c',
 					'b'
+];
+
+var specialSet1 = [
+		'<p id="geek">GeeksforGeeks</p> ',//2
+		'<script type="text/javascript"><br>a = 8 + "8"; <br>document.write(a); <br></script>',//6
+		'<script type="text/javascript"> <br>var a="GeeksforGeeks"; <br>var x=a.lastIndexOf("G"); <br>document.write(x); <br></script> ',//7
+		'<script type="text/javascript" language="javascript"> <br>var a = "GeeksforGeeks"; <br>var result = a.substring(4, 5); <br>document.write(result); <br></script>',//9
+		'<script type="text/javascript" language="javascript"> <br>var x=5; <br>var y=6; <br>var res=eval("x*y"); <br>document.write(res); <br></script>'//10
 ];
 
 //for quiz set 2
@@ -236,13 +244,7 @@ var answerSet4 = [
 
 //for displaying codes in the question
 
-var specialSet1 = [
-				'<p id="geek">GeeksforGeeks</p> ',//2
-				'<script type="text/javascript"><br>a = 8 + "8"; <br>document.write(a); <br></script>',//6
-				'<script type="text/javascript"> <br>var a="GeeksforGeeks"; <br>var x=a.lastIndexOf("G"); <br>document.write(x); <br></script> ',//7
-				'<script type="text/javascript" language="javascript"> <br>var a = "GeeksforGeeks"; <br>var result = a.substring(4, 5); <br>document.write(result); <br></script>',//9
-				'<script type="text/javascript" language="javascript"> <br>var x=5; <br>var y=6; <br>var res=eval("x*y"); <br>document.write(res); <br></script>'//10
-];
+
 
 var specialSet2 = [
 				'<p id="geek">GeeksforGeeks</p> ',
