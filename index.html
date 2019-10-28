@@ -16,26 +16,26 @@
 </head>
 
 <body>
-	<div class="timer">Time Left: <span id="timerCount">60</span> s
+	<div class="timer">Time Left: <span id="timerCount">75</span> s
 	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col marginTop">
-				<div class="card text-center">
+				<div class="card">
 					<div class="card-header">
-						<ul class="nav nav-tabs card-header-tabs">
-							<li class="nav-item">
-								<a class="nav-link active" href="index.html" id="startYourQuiz">Start Your Quiz</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="score.html" id="viewHighScores">View High Scores</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="contact.html" id="contactMe">Contact Me</a>
-							</li>
-						</ul>
+						
+							
+								<button id="startYourQuiz">Start Your Quiz</button>
+							
+							
+								<button id="viewHighScores">View High Scores</button>
+							
+							
+								<button id="contactMe">Contact Me</button>
+							
+						
 					</div>
-					<div class="card-body" id="initial">
+					<div class="card-body  text-center" id="initial">
 						<h5 class="card-title">Coding Quiz Challenge</h5>
 						<p class="card-text">
 							Try to understand the following code-related questions within the time limit.
@@ -46,12 +46,12 @@
 							<option id="quizSet1">Quiz set 1</option>
 							<option id="quizSet2">Quiz set 2</option>
 							<option id="quizSet3">Quiz set 3</option>
-							<option id="quizSet4">Quiz set 4</option>
+							<!-- <option id="quizSet4">Quiz set 4</option> -->
 						</select>
 						<button href="#" class="btn btn-primary" id="startQuiz">Start Quiz</button>
 					</div>
 
-					<div class="card-body" id="quizTest">
+					<div class="card-body  text-center" id="quizTest">
 						<h5 class="card-title">Coding Quiz Challenge</h5>
 						<p class="card-text" id="questionDisp">
 							Choose the answers!
@@ -96,13 +96,49 @@
 						<button href="#" class="btn btn-primary" id="nextQuestion">Next</button>
 					</div>
 
-					<div class="card-body" id="scoreDisplay">
+					<div class="card-body  text-center" id="scoreDisplay">
 						<h5 class="card-title">Your Score is:<span id = "userScore"></span></h5>
 						<p class="card-text">
-							Please enter your names:
-						</p>
-						<button href="#" class="btn btn-primary" id="saveScore">Save Scores</button>
+							Please enter your name:
+							<input type="text" name="name" id="nameUser" placeholder="Harper">
+							<button href="#" class="btn btn-primary" id="saveScore">Submit</button>
+						</p>	
+						<p class="card-text" id = "displayMsg">
+						</p>					
 						<button href="#" class="btn btn-primary" id="reStartQuiz">Start Quiz</button>
+					</div>
+	
+					<div class="card-body  text-center" id = "highscoreDisp">
+						<h5 class="card-title">View High Scores</h5>
+						<p class="card-text">
+							Your quiz score records will be saved here.
+							<ul id = "userScoreDisplay">
+								
+							</ul>								
+						</p>
+					</div>
+
+					<div class="card-body" id = "contactPage">
+						<h5 class="card-title">Contact Me</h5>
+						<p class="card-text">
+						<form>
+							<div class="form-group">
+								<label for="exampleInputName">Name</label>
+								<input type="text" class="form-control" id="inlineFormInputName"
+									placeholder="Enter Your Name">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label>
+								<input type="email" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" placeholder="Enter Your Email">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Messages</label>
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+									placeholder="Please write down your enquiries."></textarea>
+							</div>
+							<button type="submit" class="btn btn-secondary">Submit</button>
+						</form>
 					</div>
 				</div>
 			</div>

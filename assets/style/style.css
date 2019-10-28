@@ -33,7 +33,7 @@ body{
 	height:max-content;
 }
 
-#startQuiz,#reStartQuiz{
+#startQuiz,#reStartQuiz,#saveScore{
 	background-color:pink;
 	border:1px solid pink;
 	color:gray;

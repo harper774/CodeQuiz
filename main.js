@@ -14,13 +14,21 @@ const ifContactMe = document.querySelector("#contactMe");
 const btnStartQuiz = document.querySelector("#startQuiz");
 const btnNextQuestion = document.querySelector("#nextQuestion");
 const btnReStartQuiz = document.querySelector("#reStartQuiz");
+const btnSubmit = document.querySelector("#saveScore");
 
+const cardHeader = document.querySelector(".card-header");
 const initialPage = document.querySelector("#initial");
 const quizTestPage = document.querySelector("#quizTest");
 const scoreDisplayPage = document.querySelector("#scoreDisplay");
 
+const userName = document.querySelector("#nameUser");
+const userScoreDisplay = document.querySelector("#userScoreDisplay");
+const highscoreDisp = document.querySelector("#highscoreDisp");
+const contactPageDisp = document.querySelector("#contactPage");
 
-const quesExtraDisp = document.querySelector("#quesExtraDisp");
+
+
+// const quesExtraDisp = document.querySelector("#quesExtraDisp");
 const questionDisp = document.querySelector("#questionDisp");
 const select1 = document.querySelector("#selection1");
 const select2 = document.querySelector("#selection2");
@@ -32,18 +40,25 @@ const selectBox2 = document.querySelector("#boxCheckedBox2");
 const selectBox3 = document.querySelector("#boxCheckedBox3");
 const selectBox4 = document.querySelector("#boxCheckedBox4");
 
+const submitMsg = document.querySelector("#displayMsg");
 const msgDis = document.querySelector("#msgDis");
 const userScoreDis = document.querySelector("#userScore");
 
 //init
 function initPage(e){
+	// timerDisplay(countTimer);
+	highscoreDisp.style.display = "none";
+	contactPageDisp.style.display = "none";
 	initialPage.style.display = "block";
 	quizTestPage.style.display = "none";
 	scoreDisplayPage.style.display = "none";	
+
 }
 
 //test page is for diaplaying questions
 function quizPage(e){
+	highscoreDisp.style.display = "none";
+	contactPageDisp.style.display = "none";
 	initialPage.style.display = "none";
 	quizTestPage.style.display = "block";
 	scoreDisplayPage.style.display = "none";
@@ -54,10 +69,29 @@ function quizPage(e){
 
 //
 function ScorePage(e){
+	highscoreDisp.style.display = "none";
+	contactPageDisp.style.display = "none";
 	countTimer = 0;
 	initialPage.style.display = "none";
 	quizTestPage.style.display = "none";
 	scoreDisplayPage.style.display = "block";	
+}
+
+function highscorePage(){
+	highscoreDisp.style.display = "block";
+	contactPageDisp.style.display = "none";
+	initialPage.style.display = "none";
+	quizTestPage.style.display = "none";
+	scoreDisplayPage.style.display = "none";	
+
+}
+
+function contactPage(){
+	highscoreDisp.style.display = "none";
+	contactPageDisp.style.display = "block";
+	initialPage.style.display = "none";
+	quizTestPage.style.display = "none";
+	scoreDisplayPage.style.display = "none";	
 }
 
 //fot timer to decrease with time//why timer could not be terminated?
@@ -84,8 +118,8 @@ function questionDisplay(seq){
 }
 
 function random() {
-	var seq = ['0','1','2','3','4','5','6','7','8','9'];
-	var temp = 0;//to store the temporay data
+	var seq = ['0','1','2','3','4'];
+	var temp = 0;
 	var j= 0;
 
     for (var i = seq.length - 1; i >= 0; i--) {
@@ -139,13 +173,15 @@ function checkBoxOne(e){
 }
 
 function nextQuestion(){
-	quesExtraDisp.textContent = "";
-	if(questionCount<9){		
+	// quesExtraDisp.textContent = "";
+	if(questionCount<5){		
 		questionDisplay(seq[questionCount]);
-		extraQuestionDisplay();
+		// extraQuestionDisplay();
 	}
-	else{
+	else if (questionCount === 5){
+		userScoreDis.innerHTML = userScore;
 		ScorePage();
+		timerDisplay(0);
 	}
 	questionCount++;
 }
@@ -245,57 +281,57 @@ function quizSelect(){
 	return select;
 }
 
-function extraQuestionDisplay(){
-	var quizset = quizSetSelect.value.toLowerCase();
-	console.log(quizset);
-	switch(quizset){
-		case "quiz set 1":
-		if(seq[questionCount] === '1'){
-			quesExtraDisp.textContent = quizSelect().special(0);
-			console.log(quizSelect().special(0));
+//initiate the name & score object
+// const userScoreDisplay = document.querySelector("#userScoreDisplay");
+
+function getScores(){
+	// var storage = window.localStorage;
+	// for(let i = 0 ; i < storage.length; i++){
+	// 	console.log(storage.key(i));
+	// }
+	var nameGet = JSON.parse(localStorage.getItem("name"));
+	var scoreGet = JSON.parse(localStorage.getItem("score"));
+	var lis = document.getElementsByTagName("li").length;
+	
+	// for (var i = 0; i<lis+1; i++){
+	// 	console.log(userScoreDisplay.firstChild);
+	// 	userScoreDisplay.removeChild(userScoreDisplay.firstChild);
+	// }
+	userScoreDisplay.innerHTML = '';
+	
+	if(nameGet !== null){
+		for(var i = 0; i<nameGet.length; i++){
+			var nameli = document.createElement("li");
+			var scoreli = document.createElement("li");
+
+			nameli.textContent = nameGet[i];
+			scoreli.textContent = scoreGet[i];
+
+			userScoreDisplay.appendChild(nameli);
+			userScoreDisplay.appendChild(scoreli);
 		}
-		else if(seq[questionCount] === '5'){
-			quesExtraDisp.textContent = quizSelect().special(1);
-			console.log(quizSelect().special(1));
-		}
-		else if(seq[questionCount] === '6'){
-			quesExtraDisp.textContent = quizSelect().special(2);
-			console.log(quizSelect().special(2));
-		}
-		else if(seq[questionCount] === '8'){
-			quesExtraDisp.textContent = quizSelect().special(3);
-			console.log(quizSelect().special(3));
-		}
-		else if(seq[questionCount] === '9'){
-			quesExtraDisp.textContent = quizSelect().special(4);
-			console.log(quizSelect().special(4));
-		}
-		break;
 	}
 }
 
-//try to expand the click area to span but failed
+function submitScore(){
+	var nameGet = JSON.parse(localStorage.getItem("name"));
+	var scoreGet = JSON.parse(localStorage.getItem("score"));
+	if(nameGet !== null){
+		var length = nameGet.length;
+		nameGet[length] = userName.value.trim();
+		scoreGet[length] = userScore;
+	}else{
+		nameGet = [];
+		scoreGet = [];
+		nameGet[0] = userName.value.trim();
+		scoreGet[0] = userScore;		
+	}
 
-// function checkChecked(event){
-// 	let eventT = event.target;
-// 	console.log(eventT.tagName);
-// 	console.log(eventT.classList);
-// 	if(eventT.classList.contains("boxChecked")){
-// 		switch(eventT.tagName.toLowerCase()){
-// 			case "INPUT":
-// 				console.log('hello');
-// 				eventT.checked = true;
-// 				break;
-// 			case "SPAN":
-// 				if(eventT.classList.contains("form-control")){
-// 					eventT.siblings.elementChildren.elementChildren.checked = true;
-// 				}
-// 				else{
-// 					eventT.parent.siblings.elementChildren.elementChildren.checked = true;
-// 				}
-// 		}
-// 	}
-// }
+	localStorage.setItem("name",JSON.stringify(nameGet));
+	localStorage.setItem("score",JSON.stringify(scoreGet));
+	userName.value = "";
+	submitMsg.textContent = "You have successfully submitted the scores!"
+}
 
 //main process
 initPage();
@@ -304,7 +340,8 @@ var questionCount = 0;//for locating the question
 var count = 1;//for that only one box could be checked
 var tempCheck;
 var userScore = 0;
-var countTimer = 150;
+var countTimer = 75;
+
 //press the button to begin the test
 btnStartQuiz.addEventListener("click", quizPage);
 
@@ -312,7 +349,7 @@ btnStartQuiz.addEventListener("click", quizPage);
 btnNextQuestion.addEventListener("click",function(e){
 	if(countTimer>0 && questionCount<9){
 		nextQuestion();
-		extraQuestionDisplay();
+		// extraQuestionDisplay();
 		initNext();
 	}
 	else{
@@ -324,20 +361,62 @@ btnNextQuestion.addEventListener("click",function(e){
 
 //restart quiz button
 btnReStartQuiz.addEventListener("click",function(e){
-	window.location.reload();//use reload to initialize the page
-})
+	location.reload();//use reload to initialize the page
+});
+
+//submit the score to local storage
+btnSubmit.addEventListener("click",submitScore);
+
+cardHeader.addEventListener("click",function(e){
+	console.log(e.target.getAttribute('id'));
+	var event = e.target;
+	var eventID = e.target.getAttribute('id');
+	if(event.tagName === "BUTTON"){
+		if(eventID === "startYourQuiz"){
+			initPage();
+		}
+		else if (eventID === "viewHighScores"){
+			getScores();
+			highscorePage();
+		}
+		else if (eventID === "contactMe"){
+			contactPage();
+		}
+	}
+});
+
+// //displaying high score page
+// ifViewHighScores.addEventListener("click",function(e){
+// 	console.log(event.target);
+// 	// e.preventDefault();
+// 	highscorePage();
+// });
+
+// //displaying contact page
+// ifContactMe.addEventListener("click",function(e){
+// 	console.log(event.target);
+// 	// e.preventDefault();
+// 	contactPage();
+// });
+
+// //display the main page
+// ifStartQuiz.addEventListener("click",function(e){
+// 	console.log(event.target);
+// 	// e.preventDefault();
+// 	initPage();
+// });
 
 //answering the question
 quizTestPage.addEventListener("click",function(e){	
 	var boxClicked = e.target.id;
-	if(countTimer>0 && questionCount<9){
+	if(countTimer>10 && questionCount<6){
 		if(checkFourBox(e) && countTimer >10){
 		checkBoxOne(e);		
 		setTimeout("nextQuestion()",1000);	
 		setTimeout("initNext()",1000);	
 		checkScore(boxClicked);		
 		}
-		else if (checkFourBox(e) && countTimer <= 10){
+		else if (countTimer <= 10){
 			var flag = checkScore(boxClicked);
 			if(flag){
 				checkBoxOne(e);		
