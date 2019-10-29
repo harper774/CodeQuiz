@@ -8,7 +8,7 @@ body{
     /* background-color: rgb(240, 239, 239); */
     width:100%;
     font-family: 'Ubuntu', sans-serif;
-    background-image: url(../pic/leather.png);
+    background-image: url(../pic/bg2.jpeg);
 	height:100%;
 }
 
@@ -31,12 +31,29 @@ body{
 
 .card{
 	height:max-content;
+	/* border-radius: 1%; */
+	box-shadow: 5px 5px 30px lightgray;
 }
 
-#startQuiz,#reStartQuiz,#saveScore{
+#startQuiz,#reStartQuiz,#saveScore,.btn{
 	background-color:pink;
 	border:1px solid pink;
 	color:gray;
+	box-shadow: 5px 5px 15px rgb(122, 121, 121);
+}
+
+.btn-success{
+	background-color:rgb(133, 127, 127);
+	border:1px solid rgb(134, 129, 129);
+	color:white;
+	box-shadow: 5px 5px 10px rgb(66, 63, 63);
+	border-radius:3%;
+	margin:5px;
+}
+
+.btn-success:hover{
+	background-color:rgb(100, 95, 95);
+	border:1px solid rgb(105, 101, 101);
 }
 
 .nav-link{
