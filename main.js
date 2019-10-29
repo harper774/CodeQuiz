@@ -26,8 +26,6 @@ const userScoreDisplay = document.querySelector("#userScoreDisplay");
 const highscoreDisp = document.querySelector("#highscoreDisp");
 const contactPageDisp = document.querySelector("#contactPage");
 
-
-
 // const quesExtraDisp = document.querySelector("#quesExtraDisp");
 const questionDisp = document.querySelector("#questionDisp");
 const select1 = document.querySelector("#selection1");
@@ -52,7 +50,6 @@ function initPage(e){
 	initialPage.style.display = "block";
 	quizTestPage.style.display = "none";
 	scoreDisplayPage.style.display = "none";	
-
 }
 
 //test page is for diaplaying questions
@@ -83,7 +80,6 @@ function highscorePage(){
 	initialPage.style.display = "none";
 	quizTestPage.style.display = "none";
 	scoreDisplayPage.style.display = "none";	
-
 }
 
 function contactPage(){
@@ -229,12 +225,14 @@ function checkScore(boxId){
 		// setTimeout("msgDis.innerHTML = 'Congratulations you are right!'",2000);
 		msgDis.innerHTML = "Congratulations you are right!"
 		userScore++;//increase the user score
+		document.querySelector("#correctSound").play();
 		flag = 1;
 	}
 	else{
 		// setTimeout("msgDis.innerHTML = 'Sorry your are wrong!'",2000);
 		msgDis.innerHTML = "Sorry your are wrong!"
 		countTimer = countTimer-10;//timer penalty
+		document.querySelector("#inCorrectSound").play();
 		flag = 0;
 	}
 	// return userScore;
@@ -326,7 +324,6 @@ function submitScore(){
 		nameGet[0] = userName.value.trim();
 		scoreGet[0] = userScore;		
 	}
-
 	localStorage.setItem("name",JSON.stringify(nameGet));
 	localStorage.setItem("score",JSON.stringify(scoreGet));
 	userName.value = "";
@@ -340,7 +337,7 @@ var questionCount = 0;//for locating the question
 var count = 1;//for that only one box could be checked
 var tempCheck;
 var userScore = 0;
-var countTimer = 75;
+var countTimer = 50;
 
 //press the button to begin the test
 btnStartQuiz.addEventListener("click", quizPage);
