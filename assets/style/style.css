@@ -80,6 +80,14 @@ h5{
 	margin:0 auto 10px auto;;
 }
 
+.highScoreList{
+	display:flex;
+	flex-direction: column;
+}
+
+.highScoreList li{
+	align-self: center;
+}
 
 @media screen and (max-width:640px){
 
