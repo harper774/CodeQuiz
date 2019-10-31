@@ -175,6 +175,7 @@ function nextQuestion(){
 		// extraQuestionDisplay();
 	}
 	else if (questionCount === 5){
+		userScore = userScore + countTimer;
 		userScoreDis.innerHTML = userScore;
 		ScorePage();
 		timerDisplay(0);
@@ -279,35 +280,39 @@ function quizSelect(){
 	return select;
 }
 
-//initiate the name & score object
-// const userScoreDisplay = document.querySelector("#userScoreDisplay");
+//this is to be used by hightolow to sort the score array
+function sortNum(a, b){
+	return b - a;
+}
 
-function getScores(){
-	// var storage = window.localStorage;
-	// for(let i = 0 ; i < storage.length; i++){
-	// 	console.log(storage.key(i));
-	// }
+//this is to be used by hightolow to get the index of the array
+function indexValue(arr1, a){
+	for(var i = 0; i<arr1.length; i++){
+		if(arr1[i] === a){
+			return i;
+		}
+	}
+}
+
+//this is to sort the scores from high to low
+function highToLow(){
 	var nameGet = JSON.parse(localStorage.getItem("name"));
 	var scoreGet = JSON.parse(localStorage.getItem("score"));
-	var lis = document.getElementsByTagName("li").length;
-	
-	// for (var i = 0; i<lis+1; i++){
-	// 	console.log(userScoreDisplay.firstChild);
-	// 	userScoreDisplay.removeChild(userScoreDisplay.firstChild);
-	// }
-	userScoreDisplay.innerHTML = '';
-	
-	if(nameGet !== null){
-		for(var i = 0; i<nameGet.length; i++){
-			var nameli = document.createElement("li");
-			var scoreli = document.createElement("li");
+	var scoreGet3 = JSON.parse(localStorage.getItem("score"));
+	var temp = [];
 
-			nameli.textContent = nameGet[i];
-			scoreli.textContent = scoreGet[i];
+	if(scoreGet !== null && nameGet !== null){
+		scoreGet2 = scoreGet.sort(sortNum);
+		for (var i = 0; i<nameGet.length; i++){
 
-			userScoreDisplay.appendChild(nameli);
-			userScoreDisplay.appendChild(scoreli);
+			var j = indexValue(scoreGet3, scoreGet2[i]);
+			temp[i] = nameGet[j];
 		}
+	}
+
+	return {
+		nameGet:temp,
+		scoreGet:scoreGet
 	}
 }
 
@@ -328,6 +333,35 @@ function submitScore(){
 	localStorage.setItem("score",JSON.stringify(scoreGet));
 	userName.value = "";
 	submitMsg.textContent = "You have successfully submitted the scores!"
+}
+
+function getScores(){
+	// var storage = window.localStorage;
+	// for(let i = 0 ; i < storage.length; i++){
+	// 	console.log(storage.key(i));
+	// }
+	var nameGet = highToLow().nameGet;
+	var scoreGet = highToLow().scoreGet;
+	var lis = document.getElementsByTagName("li").length;
+	
+	// for (var i = 0; i<lis+1; i++){
+	// 	console.log(userScoreDisplay.firstChild);
+	// 	userScoreDisplay.removeChild(userScoreDisplay.firstChild);
+	// }
+	userScoreDisplay.innerHTML = '';
+	
+	if(nameGet !== null){
+		for(var i = 0; i<nameGet.length; i++){
+			var nameli = document.createElement("li");
+			// var scoreli = document.createElement("li");
+
+			nameli.textContent = nameGet[i]+' '+scoreGet[i];
+			// scoreli.textContent = scoreGet[i];
+
+			userScoreDisplay.appendChild(nameli);
+			// userScoreDisplay.appendChild(scoreli);
+		}
+	}
 }
 
 //main process
@@ -370,7 +404,7 @@ cardHeader.addEventListener("click",function(e){
 	var eventID = e.target.getAttribute('id');
 	if(event.tagName === "BUTTON"){
 		if(eventID === "startYourQuiz"){
-			initPage();
+			location.reload();
 		}
 		else if (eventID === "viewHighScores"){
 			getScores();
@@ -436,8 +470,4 @@ quizTestPage.addEventListener("click",function(e){
 		timerDisplay(0);
 	}	
 });
-
-
-
-
 

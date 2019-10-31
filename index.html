@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<div class="timer">Time Left: <span id="timerCount">50</span> s
+	<div class="timer">Time Left: <span id="timerCount">0</span> s
 	</div>
 
 	<audio id = "correctSound" src="assets/sounds/correct-organic-violin.wav"></audio>
@@ -27,9 +27,9 @@
 			<div class="col marginTop">
 				<div class="card">
 					<div class="card-header row">
-						<button class="btn-success col-sm-12 col-md-3" id="startYourQuiz">Start Your Quiz</button>
-						<button class="btn-success col-sm-12 col-md-3" id="viewHighScores">View High Scores</button>
-						<button class="btn-success col-sm-12 col-md-3" id="contactMe">Contact Me</button>						
+						<button class="btn-secondary col-sm-12 col-md-3" id="startYourQuiz">Harper's Quiz Page</button>
+						<button class="btn-secondary col-sm-12 col-md-3" id="viewHighScores">View High Scores</button>
+						<button class="btn-secondary col-sm-12 col-md-3" id="contactMe">Contact Me</button>						
 					</div>
 					<div class="card-body  text-center" id="initial">
 						<h5 class="card-title">Coding Quiz Challenge</h5>
@@ -104,13 +104,13 @@
 						<button href="#" class="btn btn-primary" id="reStartQuiz">Start Quiz</button>
 					</div>
 	
-					<div class="card-body  text-center" id = "highscoreDisp">
+					<div class="card-body text-center" id = "highscoreDisp">
 						<h5 class="card-title">View High Scores</h5>
 						<p class="card-text">
 							Your quiz score records will be saved here.
-							<ul id = "userScoreDisplay">
+							<ol class = "col-12 col-md-5 col-md-offset-2" id = "userScoreDisplay">
 								
-							</ul>								
+							</ol>								
 						</p>
 					</div>
 

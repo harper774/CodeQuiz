@@ -12,6 +12,10 @@ body{
 	height:100%;
 }
 
+h5{
+	text-shadow:3px 3px 10px rgb(105, 102, 103);
+}
+
 .marginTop{
 	margin-top:15%;
 }
@@ -29,6 +33,11 @@ body{
 	color:pink;
 }
 
+.container .row{
+	margin-right:0px;
+	margin-left:0px;
+}
+
 .card{
 	height:max-content;
 	/* border-radius: 1%; */
@@ -38,26 +47,32 @@ body{
 #startQuiz,#reStartQuiz,#saveScore,.btn{
 	background-color:pink;
 	border:1px solid pink;
-	color:gray;
+	color:rgb(90, 88, 88);
 	box-shadow: 5px 5px 15px rgb(122, 121, 121);
 }
 
-.btn-success{
+.btn-secondary{
 	background-color:rgb(133, 127, 127);
 	border:1px solid rgb(134, 129, 129);
 	color:white;
 	box-shadow: 5px 5px 10px rgb(66, 63, 63);
 	border-radius:3%;
-	margin:5px;
+	margin:5px 3px;
 }
 
-.btn-success:hover{
+.btn-secondary:hover{
 	background-color:rgb(100, 95, 95);
 	border:1px solid rgb(105, 101, 101);
 }
 
-.nav-link{
-	color:black;
+.btn-secondary:focus{
+	background-color:rgb(185, 99, 99);
+	border:1px solid rgb(105, 101, 101);
+}
+
+.btn-secondary:active{
+	background-color:rgb(245, 100, 100);
+	border:1px solid rgb(105, 101, 101);
 }
 
 .form-control-sm{
@@ -65,8 +80,7 @@ body{
 	margin:0 auto 10px auto;;
 }
 
+
 @media screen and (max-width:640px){
-	.nav-item{
-		width:100%;
-	}
+
 }
