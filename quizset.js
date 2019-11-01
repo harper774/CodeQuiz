@@ -180,7 +180,7 @@ var selectionSet3 = [
 					'Integer(value)',' ifInteger(value)','isInteger(value)',' ifinteger(value)',
 					// 'Compilation Error','My name is Geek. My favorite city is Geekistan.','My name is ${myName}.My favorite city is ${myCity}.','0',
 					// 'string number','string string','null null','string integer',
-					'Increased interactivity.',' Less server interaction.','Immediate feedback from the users.','All of the above.',
+					'Increased interactivity.',' Less server interaction.','Immediate feedback','All of the above.',
 					'forEach()','every()',' forEvery()','each()',
 					// 'Server','ISP',' Browser','None of the above',
 					// 'Compilation Error','Nothing will be printed as output','5','Runtime error',

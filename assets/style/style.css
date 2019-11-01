@@ -5,15 +5,15 @@ html{
 body{
     margin:0px;
     padding:0px;
-    /* background-color: rgb(240, 239, 239); */
     width:100%;
+	color:white;
     font-family: 'Ubuntu', sans-serif;
     background-image: url(../pic/bg2.jpeg);
 	height:100%;
 }
 
-h5{
-	text-shadow:3px 3px 10px rgb(105, 102, 103);
+h2{
+	text-shadow:26px 10px 6px white;
 }
 
 .marginTop{
@@ -24,10 +24,11 @@ h5{
 	position:fixed;
 	top:2%;
 	right:5%;
+
 	
 	border:1px dashed black;
 	padding:4px;
-	border-radius:7%;
+	border-radius:12%/20%;
 	
 	background:white;
 	color:pink;
@@ -40,8 +41,17 @@ h5{
 
 .card{
 	height:max-content;
-	/* border-radius: 1%; */
+	border-radius: 3%/5%; 
 	box-shadow: 5px 5px 30px lightgray;
+	background-image: url(../pic/bg1.jpg);
+}
+
+.card-body{
+	padding:40px 20px;
+}
+
+#contactPage{
+	padding:40px auto;
 }
 
 #startQuiz,#reStartQuiz,#saveScore,.btn{
@@ -51,12 +61,24 @@ h5{
 	box-shadow: 5px 5px 15px rgb(122, 121, 121);
 }
 
+.card-header{
+	display:flex;
+	justify-content:space-evenly;
+	flex:1;
+}
+
+li{
+	font-size:20px;
+	color:#FA8072;
+	text-shadow:2px 2px 4px white;
+}
+
 .btn-secondary{
 	background-color:rgb(133, 127, 127);
 	border:1px solid rgb(134, 129, 129);
 	color:white;
 	box-shadow: 5px 5px 10px rgb(66, 63, 63);
-	border-radius:3%;
+	border-radius:3%/20%;
 	margin:5px 3px;
 }
 
@@ -89,6 +111,12 @@ h5{
 	align-self: center;
 }
 
-@media screen and (max-width:640px){
+span{
+	color:pink;
+}
 
+@media screen and (max-width:767px){
+	.card-header{
+		display:block;
+	}
 }

@@ -72,6 +72,7 @@ function ScorePage(e){
 	initialPage.style.display = "none";
 	quizTestPage.style.display = "none";
 	scoreDisplayPage.style.display = "block";	
+	setTimeout(userName.focus(), 50);//doesnot work
 }
 
 function highscorePage(){
@@ -175,10 +176,16 @@ function nextQuestion(){
 		// extraQuestionDisplay();
 	}
 	else if (questionCount === 5){
-		userScore = userScore + countTimer;
-		userScoreDis.innerHTML = userScore;
-		ScorePage();
-		timerDisplay(0);
+		if(userScore === 0){
+			userScoreDis.innerHTML = 0;
+			ScorePage();
+			timerDisplay(0);
+		}else{
+			userScore = userScore + countTimer;
+			userScoreDis.innerHTML = userScore;
+			ScorePage();
+			timerDisplay(0);
+		}
 	}
 	questionCount++;
 }
