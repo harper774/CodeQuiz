@@ -8,12 +8,12 @@ body{
     width:100%;
 	color:white;
     font-family: 'Ubuntu', sans-serif;
-    background-image: url(../pic/bg2.jpeg);
+	background-image: url(../pic/bg2.jpeg);
 	height:100%;
 }
 
 h2{
-	text-shadow:26px 10px 6px white;
+	text-shadow:0px 0px 5px rgb(104, 102, 102);
 }
 
 .marginTop{
@@ -43,7 +43,7 @@ h2{
 	height:max-content;
 	border-radius: 3%/5%; 
 	box-shadow: 5px 5px 30px lightgray;
-	background-image: url(../pic/bg1.jpg);
+	background-image: url(../pic/bg4.jpg);
 }
 
 .card-body{
@@ -69,8 +69,19 @@ h2{
 
 li{
 	font-size:20px;
-	color:#FA8072;
-	text-shadow:2px 2px 4px white;
+	color:rgb(241, 230, 226);
+	/* text-shadow:1px 1px 5px white; */
+}
+
+#selection1,#selection2,#selection3,#selection4{
+	color:black;
+	font-size:1rem;
+	font-weight:16px;
+}
+
+.input-group{
+	width:250px;
+	margin:auto;
 }
 
 .btn-secondary{
@@ -112,7 +123,7 @@ li{
 }
 
 span{
-	color:pink;
+	color:rgb(252, 181, 193);
 }
 
 @media screen and (max-width:767px){
