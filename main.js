@@ -15,6 +15,7 @@ const btnStartQuiz = document.querySelector("#startQuiz");
 const btnNextQuestion = document.querySelector("#nextQuestion");
 const btnReStartQuiz = document.querySelector("#reStartQuiz");
 const btnSubmit = document.querySelector("#saveScore");
+const btnClear = document.querySelector("#clear");
 
 const cardHeader = document.querySelector(".card-header");
 const initialPage = document.querySelector("#initial");
@@ -405,6 +406,12 @@ btnReStartQuiz.addEventListener("click",function(e){
 
 //submit the score to local storage
 btnSubmit.addEventListener("click",submitScore);
+
+//clear button
+btnClear.addEventListener("click",function(){
+	userScoreDisplay.innerHTML = "";
+	localStorage.clear();
+});
 
 cardHeader.addEventListener("click",function(e){
 	console.log(e.target.getAttribute('id'));
