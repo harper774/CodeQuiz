@@ -172,7 +172,7 @@ function checkBoxOne(e){
 function nextQuestion(){
 	// quesExtraDisp.textContent = "";
 	if(questionCount<5){	
-		countTimer -= 10;	
+		// countTimer -= 10;	
 		questionDisplay(seq[questionCount]);
 		// extraQuestionDisplay();
 	}
