@@ -387,6 +387,7 @@ btnStartQuiz.addEventListener("click", quizPage);
 
 //next button
 btnNextQuestion.addEventListener("click",function(e){
+	countTimer -= 10;
 	if(countTimer>0 && questionCount<9){
 		nextQuestion();
 		// extraQuestionDisplay();
